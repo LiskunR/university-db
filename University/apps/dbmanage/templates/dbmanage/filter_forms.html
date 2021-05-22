@@ -1,0 +1,121 @@
+{% if students %}
+<div class="col-sm-8 mt-4">
+  <form class="d-flex mb-3" action="{% url 'student_manager' %}">
+    <div class="input-group">
+      <input class="form-control form-control-sm" name="text" type="search" placeholder="Поиск"  aria-describedby="button-search">
+      <button class="btn btn-outline-success me-3" type="submit" id="button-search">Поиск</button>
+    </div>
+    <a type="submit" href="{% url 'student_manager' %}" class="btn btn-outline-warning me-3">Сбросить</a>
+  </form>
+  <form class="" action="{% url 'student_manager' %}">
+    <div class="input-group mb-3">
+        <input class="form-control" name="filter_from" type="filter" placeholder="Значение от">
+        <input class="form-control" name="filter_to" type="filter" placeholder="Значение до">
+        <select class="form-select" id="inputGroupSelect02" name="filter_by">
+          <option value="id">ID</option>
+        </select>
+        <button class="btn btn-outline-success me-3" type="submit" id="button-filter">Фильтровать</button>
+      </div>
+    </form>
+{% endif %}
+
+{% if subjects %}
+  <div class="col-sm-8 mt-4">
+    <form class="d-flex mb-3" action="{% url 'subject_manager' %}">
+      <div class="input-group">
+        <input class="form-control form-control-sm" name="text" type="search" placeholder="Поиск"  aria-describedby="button-search">
+        <button class="btn btn-outline-success me-3" type="submit" id="button-search">Поиск</button>
+      </div>
+      <a type="submit" href="{% url 'subject_manager' %}" class="btn btn-outline-warning me-3">Сбросить</a>
+    </form>
+    <form class="" action="{% url 'subject_manager' %}">
+      <div class="input-group mb-3">
+          <input class="form-control" name="filter_from" type="filter" placeholder="Значение от">
+          <input class="form-control" name="filter_to" type="filter" placeholder="Значение до">
+          <select class="form-select" id="inputGroupSelect02" name="filter_by">
+            <option value="id">ID</option>
+            <option value="subject_price"selected>Цена предмета</option>
+            <option value="subject_l_count">Кол-во лекций</option>
+            <option value="subject_p_count">Кол-во практик</option>
+            <option value="subject_l_price">Цена лекции</option>
+            <option value="subject_p_price">Цена практики</option>
+            <option value="whole_price">Общая цена</option>
+          </select>
+          <button class="btn btn-outline-success me-3" type="submit" id="button-filter">Фильтровать</button>
+        </div>
+      </form>
+{% endif %}
+
+
+{% if teachers %}
+<div class="col-sm-8 mt-4">
+  <form class="d-flex mb-3" action="{% url 'teacher_manager' %}">
+    <div class="input-group">
+      <input class="form-control form-control-sm" name="text" type="search" placeholder="Поиск"  aria-describedby="button-search">
+      <button class="btn btn-outline-success me-3" type="submit" id="button-search">Поиск</button>
+    </div>
+    <a type="submit" href="{% url 'teacher_manager' %}" class="btn btn-outline-warning me-3">Сбросить</a>
+  </form>
+  <form class="" action="{% url 'teacher_manager' %}">
+    <div class="input-group mb-3">
+        <input class="form-control" name="filter_from" type="filter" placeholder="Значение от">
+        <input class="form-control" name="filter_to" type="filter" placeholder="Значение до">
+        <select class="form-select" id="inputGroupSelect02" name="filter_by">
+          <option value="id">ID</option>
+          <option value="teacher_exp"selected>Стаж</option>
+          <option value="teacher_lessons_count">Всего занятий</option>
+          <option value="teacher_salary">Зарплата</option>
+        </select>
+        <button class="btn btn-outline-success me-3" type="submit" id="button-filter">Фильтровать</button>
+      </div>
+    </form>
+{% endif %}
+
+{% if teachersbj %}
+<div class="col-sm-8 mt-4">
+  <form class="d-flex mb-3" action="{% url 'teachersbj_manager' %}">
+    <div class="input-group">
+      <input class="form-control form-control-sm" name="text" type="search" placeholder="Поиск"  aria-describedby="button-search">
+      <button class="btn btn-outline-success me-3" type="submit" id="button-search">Поиск</button>
+    </div>
+    <a type="submit" href="{% url 'teachersbj_manager' %}" class="btn btn-outline-warning me-3">Сбросить</a>
+  </form>
+  <form class="" action="{% url 'teachersbj_manager' %}">
+    <div class="input-group mb-3">
+        <input class="form-control" name="filter_from" type="filter" placeholder="Значение от">
+        <input class="form-control" name="filter_to" type="filter" placeholder="Значение до">
+        <select class="form-select" id="inputGroupSelect03" name="filter_by">
+          <option value="id">ID</option>
+          <option value="subject_price">Цена предмета</option>
+          <option value="subject_l_price">Цена за лекцию</option>
+          <option value="subject_p_price">Цена за практику</option>
+          <option value="subject_l_count">Кол-во лекций</option>
+          <option value="subject_p_count">Кол-во практик</option>
+          <option value="whole_price">Общей цене</option>
+        </select>
+        <button class="btn btn-outline-success me-3" type="submit" id="button-filter">Фильтровать</button>
+      </div>
+    </form>
+{% endif %}
+
+{% if groups %}
+<div class="col-sm-8 mt-4">
+  <form class="d-flex mb-3" action="{% url 'group_manager' %}">
+    <div class="input-group">
+      <input class="form-control form-control-sm" name="text" type="search" placeholder="Поиск"  aria-describedby="button-search">
+      <button class="btn btn-outline-success me-3" type="submit" id="button-search">Поиск</button>
+    </div>
+    <a type="submit" href="{% url 'group_manager' %}" class="btn btn-outline-warning me-3">Сбросить</a>
+  </form>
+  <form class="" action="{% url 'group_manager' %}">
+    <div class="input-group mb-3">
+        <input class="form-control" name="filter_from" type="filter" placeholder="Значение от">
+        <input class="form-control" name="filter_to" type="filter" placeholder="Значение до">
+        <select class="form-select" id="inputGroupSelect03" name="filter_by">
+          <option value="id">ID</option>
+          <option value="student_set.count">Кол-во студентов</option>
+        </select>
+        <button class="btn btn-outline-success me-3" type="submit" id="button-filter">Фильтровать</button>
+      </div>
+    </form>
+{% endif %}

@@ -1,0 +1,14 @@
+<form action="{% url 'create_subject' %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="row">
+        {{field.label_tag}}
+        {{field}}
+        {% if field.errors%}
+        <div class="error">{{field.errors}}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {{ sform }}
+</div>
+</form>

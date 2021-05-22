@@ -1,0 +1,117 @@
+{% if teachers %}
+    <div class="container">
+    <table>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Телефон</th>
+      <th>Стаж</th>
+      </tr>
+     <tr>
+      {% for t in teachers %}
+      <tr>
+        <td>{{t.id}}</td>
+        <td>{{t.teacher_name}}</td>
+        <td>{{t.teacher_phone}}</td>
+        <td>{{t.teacher_exp}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+    {% endif %}
+    
+    {% if groups %}
+        <div class="container">
+      <table>
+    <tr>
+      <th>ID</th>
+      <th>Группа</th>
+      <th>Отделение</th>
+      </tr>
+     <tr>
+      {% for g in groups %}
+      <tr>
+        <td>{{g.id}}</td>
+        <td>{{g.group_name}}</td>
+        <td>{{g.get_group_depart_display}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+    {% endif %}
+
+    {% if students %}
+    <div class="container">
+    <table>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Группа</th>
+      <th>Отделение</th>
+      </tr>
+     <tr>
+      {% for s in students %}
+      <tr>
+        <td>{{s.id}}</td>
+        <td>{{s.student_name}}</td>
+        <td>{{s.group}}</td>
+        <td>{{s.get_student_depart_display}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+    {% endif %}
+
+    {% if teachersubjects %}
+
+          <div class="container">
+    <table>
+    <tr>
+      <th>ID</th>
+      <th>Преподаватель</th>
+      <th>Группа</th>
+      <th>Предмет</th>
+      </tr>
+     <tr>
+      {% for ts in teachersubjects %}
+      <tr>
+        <td>{{ts.id}}</td>
+        <td>{{ts.teacher.teacher_name}}</td>
+        <td>{{ts.group.group_name}}</td>
+        <td>{{ts.subject.subject_name}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+    {% endif %}
+
+     {% if subjects %}
+
+          <div class="container">
+    <table>
+    <tr>
+      <th>ID</th>
+      <th>Название</th>
+      <th>Цена за предмет</th>
+      <th>Кол-во лекций</th>
+      <th>Кол-во практик</th>
+      <th>Цена за лекцию</th>
+      <th>Цена за практику</th>
+      </tr>
+     <tr>
+      {% for s in subjects %}
+      <tr>
+        <td>{{s.id}}</td>
+        <td>{{s.subject_name}}</td>
+        <td>{{s.subject_price}}</td>
+        <td>{{s.subject_l_count}}</td>
+        <td>{{s.subject_p_count}}</td>
+        <td>{{s.subject_l_price}}</td>
+        <td>{{s.subject_p_price}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+    {% endif %}

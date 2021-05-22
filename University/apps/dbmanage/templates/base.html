@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Манипулирование базой данных</title>
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <script src="{% static 'sorttable.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

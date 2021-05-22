@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container-fluid">
+    <nav class="navbar navbar-light">
+      <div class="container-fluid">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href={% url 'index' %}>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Classes({{ teachersbj.count }})</li>
+        </ol>
+      </div>
+    </nav>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm input-group input-group-sm mb-3">
+        <form action="{% url 'teachersbj_manager' %}" method="post">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="row">
+              {{field.label_tag}}
+              {{field}}
+              {% if field.errors%}
+                <div class="alert alert-success" role="alert">
+                  {{field.errors}}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <input type="submit" class="btn btn-outline-primary mt-3" name="submit" value="Создать/Изменить"></form>
+        </div>
+            {% include "./filter_forms.html" %}
+      </div>
+    </div>
+    </div>
+    <div class="container">
+      <table class="sortable table">
+        <tr>
+          <th>ID</th>
+          <th>Преподаватель</th>
+          <th>Предмет</th>
+          <th>Группа</th>
+          <th>Цена предмета</th>
+          <th>Цена за лекцию</th>
+          <th>Цена за практику</th>
+          <th>Кол-во лекций</th>
+          <th>Кол-во практик</th>
+          <th>Общая цена</th>
+          <th class="sorttable_nosort">Действия</th>
+        </tr>
+        <tr>
+          {% for t in teachersbj %}
+            <tr>
+              <td>{{t.id}}</td>
+              <td>{{t.teacher}}</td>
+              <td>{{t.subject}}</td>
+              <td>{{t.group}}</td>
+              <td>{{t.subject.subject_price}}</td>
+              <td>{{t.subject.subject_l_price}}</td>
+              <td>{{t.subject.subject_p_price}}</td>
+              <td>{{t.subject.subject_l_count}}</td>
+              <td>{{t.subject.subject_p_count}}</td>
+              <td>{{t.subject.whole_price}}</td>
+              <td><a href="delete/teachersbj/{{t.id}}"><svg width="20" height="20" viewBox="0 0 15 15" fill="none"><path d="M5.5 1C5.22386 1 5 1.22386 5 1.5C5 1.77614 5.22386 2 5.5 2H9.5C9.77614 2 10 1.77614 10 1.5C10 1.22386 9.77614 1 9.5 1H5.5ZM3 3.5C3 3.22386 3.22386 3 3.5 3H5H10H11.5C11.7761 3 12 3.22386 12 3.5C12 3.77614 11.7761 4 11.5 4H11V12C11 12.5523 10.5523 13 10 13H5C4.44772 13 4 12.5523 4 12V4L3.5 4C3.22386 4 3 3.77614 3 3.5ZM5 4H10V12H5V4Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></td>
+            </div>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+{% endblock %}
