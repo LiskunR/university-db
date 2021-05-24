@@ -32,6 +32,7 @@
       </div>
     </div>
     </div>
+    {% if teachersbj %}
     <div class="container">
       <table class="sortable table">
         <tr>
@@ -65,5 +66,8 @@
           </tr>
         {% endfor %}
       </table>
+      <a type="submit" href="delete/teachers/all" class="btn btn-outline-danger">Удалить всё</a></form>
+      
     </div>
+    {% endif %}
 {% endblock %}

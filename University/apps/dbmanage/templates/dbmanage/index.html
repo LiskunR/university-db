@@ -1,185 +1,175 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 <div class="container-fluid">
-  <nav class="navbar navbar-light">
-    <div class="container-fluid">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Home</li>
-        <li class="breadcrumb-item"><a href={% url 'teacher_manager' %}>Teachers</a></li>
-        <li class="breadcrumb-item"><a href={% url 'teachersbj_manager' %}>Classes</a></li>
-        <li class="breadcrumb-item"><a href={% url 'group_manager' %}>Groups</a></li>
-        <li class="breadcrumb-item"><a href={% url 'student_manager' %}>Students</a></li>
-        <li class="breadcrumb-item"><a href={% url 'subject_manager' %}>Subjects</a></li>
-      </ol>
-    </div>
-  </nav>
-</div>
-    {% if form %}
-    <div class="container">
-      <div class="row">
-        <div class="col-sm input-group input-group-sm mb-3 ms-5">
-          <form action="{% url 'index' %}" method="post">
-            {% csrf_token %}
-            {% for field in form %}
-              <div class="row">
-                {{field.label_tag}}
-                {{field}}
-                {% if field.errors%}
-                <div class="alert alert-success" role="alert">
-                  {{field.errors}}
-                </div>
-                {% endif %}
-              </div>
-            {% endfor %}
-            <input type="submit" class="btn btn-outline-primary mt-3" name="submit" value="Найти">
-          </div>
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Home</li>
+                <li class="breadcrumb-item"><a href={% url 'teacher_manager' %}>Teachers</a></li>
+                <li class="breadcrumb-item"><a href={% url 'teachersbj_manager' %}>Classes</a></li>
+                <li class="breadcrumb-item"><a href={% url 'group_manager' %}>Groups</a></li>
+                <li class="breadcrumb-item"><a href={% url 'student_manager' %}>Students</a></li>
+                <li class="breadcrumb-item"><a href={% url 'subject_manager' %}>Subjects</a></li>
+            </ol>
         </div>
-      </div>
-      {% endif %}
-
-    {% if teacherclasses %}
-      <h3 class="mx-5 my-3"></h3>
-        <div class="container">
-            <table class="sortable table">
-                <tr>
-                    <th>Преподаватель</th>
-                    <th>Группа</th>
-                    <th>Всего занятий у группы</th>
-                    <th>Общая зарплата за группу</th>
-                    <th>Предметы</th>
-                </tr>
-                <tr>
-                    {% for key in teacherclasses %}
-                        <tr>
-                            <td>{{key.teacher}}</td>
-                            <td>{{key.group}}</td>
-                            <td>{{key.total}}</td>
-                            <td>{{key.price}}</td>
-                            <td>{{key.subjects}}</td>
-                            {% endfor %}
-                              </tr>
-                            </table>
-                          </div>
-    {% endif %}
-
-    {% if subjects %}
-        <h3 class="mx-5 my-3">Предметы</h3>
-        <div class="container">
-            <table class="sortable table">
-                <tr>
-                    <th>ID</th>
-                    <th>Название</th>
-                </tr>
-                <tr>
-                    {% for s in subjects %}
-                        <tr>
-                            <td>{{s.id}}</td>
-                            <td>{{s.subject_name}}</td>
-                            {% endfor %}
-                              </tr>
-                            </table>
-                          </div>
-    {% endif %}
-
- {% if groups %}
- <h3 class="mx-5 my-3">Группы</h3>
-    <div class="container">
-      <table class="sortable table">
+    </nav>
+</div>
+{% if form %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm input-group input-group-sm mb-3 ms-5">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="row">
+                    {{field.label_tag}}
+                    {{field}}
+                    {% if field.errors%}
+                    <div class="alert alert-success" role="alert">
+                        {{field.errors}}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-outline-primary mt-3" name="submit" value="Найти">
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if teacherclasses %}
+<h3 class="mx-5 my-3"></h3>
+<div class="container">
+    <table class="sortable table">
         <tr>
-          <th>ID</th>
-          <th>Имя</th>
-          <th>Отделение</th>
-          <th>Кол-во студентов</th>
+            <th>Преподаватель</th>
+            <th>Группа</th>
+            <th>Всего часов у группы</th>
+            <th>Общая зарплата за группу</th>
+            <th>Предметы</th>
         </tr>
         <tr>
-          {% for g in groups %}
-            <tr>
-              <td>{{g.id}}</td>
-              <td>{{g.group_name}}</td>
-              <td>{{g.get_group_depart_display}}</td>
-              <td>{{g.student_set.count}}</td>
-          </tr>
+            {% for key in teacherclasses %}
+        <tr>
+            <td>{{key.teacher}}</td>
+            <td>{{key.group}}</td>
+            <td>{{key.total}}</td>
+            <td>{{key.price}}</td>
+            <td>{{key.subjects}}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+{% endif %}
+{% if subjects %}
+<h3 class="mx-5 my-3">Предметы</h3>
+<div class="container">
+    <table class="sortable table">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+        </tr>
+        <tr>
+            {% for s in subjects %}
+        <tr>
+            <td>{{s.id}}</td>
+            <td>{{s.subject_name}}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+{% endif %}
+{% if groups %}
+<h3 class="mx-5 my-3">Группы</h3>
+<div class="container">
+    <table class="sortable table">
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Отделение</th>
+            <th>Кол-во студентов</th>
+        </tr>
+        <tr>
+            {% for g in groups %}
+        <tr>
+            <td>{{g.id}}</td>
+            <td>{{g.group_name}}</td>
+            <td>{{g.get_group_depart_display}}</td>
+            <td>{{g.student_set.count}}</td>
+        </tr>
         {% endfor %}
-      </table>
-    </div>
-  {% endif %}
-
-
+    </table>
+</div>
+{% endif %}
 {% if teachers %}
 <h3 class="mx-5 my-3">Преподаватели</h3>
-    <div class="container">
-      <table class="sortable table">
+<div class="container">
+    <table class="sortable table">
         <tr>
-          <th>ID</th>
-          <th>Имя</th>
-          <th>Телефон</th>
-          <th>Стаж</th>
-          <th>Всего занятий</th>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Стаж</th>
+            <th>Всего занятий</th>
         </tr>
         <tr>
-          {% for t in teachers %}
-            <tr>
-              <td>{{t.id}}</td>
-              <td>{{t.teacher_name}}</td>
-              <td>{{t.teacher_phone}}</td>
-              <td>{{t.teacher_exp}}</td>
-              <td>{{t.classes_set.count}}</td>
-            </div>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
-  {% endif %}
-
+            {% for t in teachers %}
+        <tr>
+            <td>{{t.id}}</td>
+            <td>{{t.teacher_name}}</td>
+            <td>{{t.teacher_phone}}</td>
+            <td>{{t.teacher_exp}}</td>
+            <td>{{t.classes_set.count}}</td>
+</div>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endif %}
 {% if students %}
 <h3 class="mx-5 my-3">Студенты</h3>
-    <div class="container">
-      <table class="sortable table">
+<div class="container">
+    <table class="sortable table">
         <tr>
-          <th>ID</th>
-          <th>Имя</th>
-          <th>Группа</th>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Группа</th>
         </tr>
         <tr>
-          {% for s in students %}
-            <tr>
-              <td>{{s.id}}</td>
-              <td>{{s.student_name}}</td>
-              <td>{{s.group}}</td>
-        {% endfor %}
-          </tr>
-        </table>
-      </div>
-  {% endif %}
-
+            {% for s in students %}
+        <tr>
+            <td>{{s.id}}</td>
+            <td>{{s.student_name}}</td>
+            <td>{{s.group}}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+{% endif %}
 {% if teachersbj %}
 <h3 class="mx-5 my-3">Занятия</h3>
-  <div class="container">
-      <table class="sortable table">
+<div class="container">
+    <table class="sortable table">
         <tr>
-          <th>ID</th>
-          <th>Преподаватель</th>
-          <th>Предмет</th>
-          <th>Группа</th>
-          <th>Кол-во лекций</th>
-          <th>Кол-во практик</th>
+            <th>ID</th>
+            <th>Преподаватель</th>
+            <th>Предмет</th>
+            <th>Группа</th>
+            <th>Кол-во лекций</th>
+            <th>Кол-во практик</th>
         </tr>
         <tr>
-          {% for t in teachersbj %}
-            <tr>
-              <td>{{t.id}}</td>
-              <td>{{t.teacher}}</td>
-              <td>{{t.subject}}</td>
-              <td>{{t.group}}</td>
-              <td>{{t.subject.subject_l_count}}</td>
-              <td>{{t.subject.subject_p_count}}</td>
-            </div>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
-      {% endif %}
-
+            {% for t in teachersbj %}
+        <tr>
+            <td>{{t.id}}</td>
+            <td>{{t.teacher}}</td>
+            <td>{{t.subject}}</td>
+            <td>{{t.group}}</td>
+            <td>{{t.subject.subject_l_count}}</td>
+            <td>{{t.subject.subject_p_count}}</td>
+</div>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endif %}
 {% endblock %}

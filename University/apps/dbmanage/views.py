@@ -9,7 +9,6 @@ import random
 
 def index(request):
     if request.method == 'POST':
-            classes = Classes.objects.all()
             form = TeacherForm(request.POST)
             if form.is_valid():
                 groups = []
@@ -22,6 +21,7 @@ def index(request):
                                 gr['total'] += int(cl.subject.total_hours)
                                 gr['price'] += float(cl.subject.whole_price)
                                 gr['subjects'] += ", " + cl.subject.subject_name
+                    print(groups)
                 context = {
                     'teachers':Teacher.objects.all(),
                     'students':Student.objects.all(),

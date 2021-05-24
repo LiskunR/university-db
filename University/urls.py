@@ -2,6 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('dbmanage/', include('dbmanage.urls')),
+    path('', include('dbmanage.urls')),
     path('admin/', admin.site.urls)
 ]

@@ -23,14 +23,14 @@ class DataParse(object):
 		tlist = []
 		urls = [
 		"https://dsum.edu.ua/uk/departments/it",
-		"https://dsum.edu.ua/uk/departments/marketing",
-		"https://dsum.edu.ua/uk/departments/tourism",
-		"https://dsum.edu.ua/uk/departments/fin",
-		"https://dsum.edu.ua/uk/departments/ypep",
-		"https://dsum.edu.ua/uk/departments/imov",
-		"https://dsum.edu.ua/uk/departments/dep-eco-management",
-		"https://dsum.edu.ua/uk/departments/puta",
-		"https://dsum.edu.ua/uk/departments/dpd"
+		# "https://dsum.edu.ua/uk/departments/marketing",
+		# "https://dsum.edu.ua/uk/departments/tourism",
+		# "https://dsum.edu.ua/uk/departments/fin",
+		# "https://dsum.edu.ua/uk/departments/ypep",
+		# "https://dsum.edu.ua/uk/departments/imov",
+		# "https://dsum.edu.ua/uk/departments/dep-eco-management",
+		# "https://dsum.edu.ua/uk/departments/puta",
+		# "https://dsum.edu.ua/uk/departments/dpd"
 		]
 		for url in urls:
 			html = requests.get(url)
@@ -44,11 +44,11 @@ class DataParse(object):
 		sblist = []
 		urls = [
 		"https://dsum.edu.ua/uk/departments/it",
-		"https://dsum.edu.ua/uk/departments/marketing",
-		"https://dsum.edu.ua/uk/departments/tourism",
-		"https://dsum.edu.ua/uk/departments/fin",
-		"https://dsum.edu.ua/uk/departments/ypep",
-		"https://dsum.edu.ua/uk/departments/imov",
+		# "https://dsum.edu.ua/uk/departments/marketing",
+		# "https://dsum.edu.ua/uk/departments/tourism",
+		# "https://dsum.edu.ua/uk/departments/fin",
+		# "https://dsum.edu.ua/uk/departments/ypep",
+		# "https://dsum.edu.ua/uk/departments/imov",
 		]
 		for url in urls:
 			html = requests.get(url)
@@ -138,6 +138,25 @@ def delete_object(request, id , name):
         return redirect('student_manager')
     elif name == "teachersbj":
         Classes.objects.filter(id=id).delete()
+        return redirect('teachersbj_manager')
+    else:
+        return HttpResponse("ERROR")
+
+def delete_all(request, name):
+    if name == "teachers":
+        Teacher.objects.all().delete()
+        return redirect('teacher_manager')
+    elif name == "groups":
+        Group.objects.all().delete()
+        return redirect('group_manager')
+    elif name == "subjects":
+        Subject.objects.all().delete()
+        return redirect('subject_manager')
+    elif name == "students":
+        Student.objects.all().delete()
+        return redirect('student_manager')
+    elif name == "teachersbj":
+        Classes.objects.all().delete()
         return redirect('teachersbj_manager')
     else:
         return HttpResponse("ERROR")

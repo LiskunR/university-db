@@ -13,4 +13,5 @@ urlpatterns = [
     path('groups', views.group_manager, name='group_manager'),
     path('teachersubjects', views.teachersbj_manager, name='teachersbj_manager'),
     path('delete/<name>/<int:id>/', delete_object),
+    path('delete/<name>/all', delete_all),
 ]
