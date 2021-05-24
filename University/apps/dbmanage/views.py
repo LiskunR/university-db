@@ -378,8 +378,3 @@ def group_manager(request):
         'form':form,
         }
         return render(request, 'dbmanage/group_form.html', context)
-
-
-
-
-#################################################################
