@@ -58,13 +58,24 @@ WSGI_APPLICATION = 'University.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'django.db.backends.mysql',
+#     'NAME': 'university',
+#     'USER': 'root',
+#     'PASSWORD': 'root',
+#     'HOST': 'localhost',
+#     'PORT': '3306',
+#     },
+# }
+
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'university',
-    'USER': 'root',
-    'PASSWORD': 'root',
-    'HOST': 'localhost',
+    'USER': 'lsk_rdk',
+    'PASSWORD': 'university',
+    'HOST': 'university.co8laeet8ps5.eu-west-3.rds.amazonaws.com',
     'PORT': '3306',
     },
 }
